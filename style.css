@@ -1,0 +1,19 @@
+body{
+    background-color: #00bbff;
+}
+#scr{
+    margin-right: 500px;
+}
+#thesketch{
+    padding-top: 10px;
+}
+T#guessedsketch{
+    padding-top: 10px;
+}
+.h{
+    font-size: 70px !important;
+}
+canvas{
+    border-color: black !important;
+    border: 1px solid black;
+}
