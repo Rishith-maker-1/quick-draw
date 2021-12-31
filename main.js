@@ -13,7 +13,9 @@ function uc(){
 }
 function setup() {
   canvas = createCanvas(500, 280);
-  canvas.position(450,350)
+  canvas.position(450,350);
+  canvas.mouseReleased(classifyCanvas);
+  synth=window.speechSynthesis;
 }
   
 function draw() {
@@ -51,4 +53,20 @@ function hi(){
      timer_counter= timer_counter-1
     }
     },1000);
+}
+function preload(){
+  classifier=ml5.imageClassifier('DoodleNet');
+}
+function classifyCanvas(){
+  classifier.classify(canvas,gotresults);
+}
+function gotresults(error,results){
+  if(error){
+      console.error(error);
+  }else{
+      console.log(results);
+      document.getElementById('guessedsketch').innerHTML='Your Sketch : '+results[0].label;
+      utterThis=new SpeechSynthesisUtterance(results[0].label);
+      synth.speak(utterThis);
+  }
 }
